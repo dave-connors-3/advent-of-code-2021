@@ -6,7 +6,24 @@ def get_list():
 # def get_direction_dict(directions):
 #     for set in directions:
 
-def calculate_position(direction_list):
+def calculate_position_no_aim(direction_list):
+    positions = {
+    'horizontal': 0,
+    'vertical': 0
+    }
+
+    for item in direction_list:
+        if item['direction'] == 'forward':
+            positions['horizontal'] += int(item['distance'])
+        elif item['direction'] == 'up':
+            positions['vertical'] -= int(item['distance'])
+        else:
+            positions['vertical'] += int(item['distance'])
+
+    print(positions)
+    print('Product of positions: ' + str(positions['horizontal'] * positions['vertical']))
+
+def calculate_position_with_aim(direction_list):
     positions = {
     'horizontal': 0,
     'vertical': 0,
@@ -28,7 +45,8 @@ def calculate_position(direction_list):
 
 def main():
     directions = get_list()
-    calculate_position(directions)
+    calculate_position_no_aim(directions)
+    calculate_position_with_aim(directions)
 
 if __name__ == "__main__":
     main()
